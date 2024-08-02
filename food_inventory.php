@@ -1,0 +1,219 @@
+<?php
+$servername = "localhost";
+$username = "root"; // Your database username
+$password = ""; // Your database password
+$dbname = "catering";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Close connection
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCMS Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image/background.jpg'); /* Replace with the actual URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        .sidebar {
+            width: 60px;
+            height: 100vh;
+            background-color: #00acc1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            transition: width 0.3s;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            margin: 15px 0;
+        }
+        .sidebar a:hover {
+            background-color: none; /* Change background color on hover */
+            color: #f4f4f4; /* Change text color on hover */
+        }
+
+        .sidebar a:hover i {
+            transform: scale(1.7); /* Slightly enlarge the icon on hover */
+        }
+        .main-content {
+            margin-left: 60px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .user-profile {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .header .user-profile .notifications {
+            margin-right: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        .header .user-profile .notifications .fas {
+            font-size: 24px;
+            color: #00acc1;
+        }
+        .header .user-profile .notifications .badge {
+            background-color: #ff3d00;
+            color: #fff;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .header .user-profile .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #00acc1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .header .user-profile .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        .header .user-profile .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #333;
+            text-decoration: none;
+        }
+        .header .user-profile .dropdown a:hover {
+            background-color: #f4f4f4;
+        }
+        .header .user-profile.active .dropdown {
+            display: block;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+                padding-top: 10px;
+            }
+            .sidebar a {
+                font-size: 20px;
+                margin: 15px 0;
+            }
+            .main-content {
+                margin-left: 50px;
+                padding: 10px;
+            }
+            .header .title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 40px;
+                padding-top: 5px;
+            }
+            .sidebar a {
+                font-size: 16px;
+                margin: 10px 0;
+            }
+            .main-content {
+                margin-left: 40px;
+                padding: 5px;
+            }
+            .header .title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.php"><i class="fas fa-dashboard"></i></a> <!-- dashboard -->
+        <a href="user.php"><i class="fas fa-users"></i></a> <!-- Registered User -->
+        <a href="request.php"><i class="fas fa-concierge-bell"></i></a> <!-- Catering Request -->
+        <a href="confirmed.php"><i class="fas fa-check"></i></a> <!-- Confirmed Request -->
+        <a href="cancel.php"><i class="fas fa-times"></i></a> <!-- Total Cancelled Orders -->
+        <a href="equipment.php"><i class="fas fa-utensils"></i></a> <!-- Catering Equipment -->
+        <a href="food_inventory.php"><i class="fas fa-boxes"></i></a> <!-- Food Inventory -->
+        <a href="income.php"><i class="fas fa-money-bill-wave"></i></a> <!-- Monthly Income -->
+        <a href="staff.php"><i class="fas fa-users-cog"></i></a> <!-- Staff Management -->
+        <a href="feedback.php"><i class="fas fa-comment-dots"></i></a> <!-- Customer Feedback -->
+        <a href="transport.php"><i class="fas fa-truck"></i></a> <!-- Transportation -->
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="title">Food Inventory</div>
+            <div class="user-profile">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">2</span>
+                </div>
+                <div class="user-icon">A</div>
+                <div class="dropdown">
+                    <a href="#">Profile</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.user-icon').addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+        });
+        document.querySelector('.notifications').addEventListener('click', function() {
+            alert('Notifications clicked!');
+        });
+    </script>
+</body>
+</html>

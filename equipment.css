@@ -1,0 +1,294 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('image/background.jpg'); /* Replace with the actual URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 60px;
+    height: 100vh;
+    background-color: #00acc1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    transition: width 0.3s;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.sidebar a:hover {
+    color: #f4f4f4; /* Change text color on hover */
+}
+
+.sidebar a:hover i {
+    transform: scale(1.7); /* Slightly enlarge the icon on hover */
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+}
+
+/* Header styles */
+.header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .user-profile {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header .user-profile .notifications {
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.header .user-profile .notifications .fas {
+    font-size: 24px;
+    color: #00acc1;
+}
+
+.header .user-profile .notifications .badge {
+    background-color: #ff3d00;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.header .user-profile .user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #00acc1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.header .user-profile .dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.header .user-profile .dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.header .user-profile .dropdown a:hover {
+    background-color: #f4f4f4;
+}
+
+.header .user-profile.active .dropdown {
+    display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+        padding-top: 10px;
+    }
+    .sidebar a {
+        font-size: 20px;
+        margin: 15px 0;
+    }
+    .main-content {
+        margin-left: 50px;
+        padding: 10px;
+    }
+    .header .title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 40px;
+        padding-top: 5px;
+    }
+    .sidebar a {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    .main-content {
+        margin-left: 40px;
+        padding: 5px;
+    }
+    .header .title {
+        font-size: 18px;
+    }
+}
+
+/* Table styles */
+.table-container {
+    margin-top: 20px;
+    position: relative; /* Add relative positioning to the container */
+}
+
+.table-container h2 {
+    position: absolute; /* Position absolutely relative to the table container */
+    top: -70px; /* Position above the table */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #00acc1; /* Background color to match the table */
+    color: #fff; /* Text color */
+    padding: 5px 10px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 24px; /* Font size for the header */
+    font-weight: bold; /* Bold text */
+    z-index: 1; /* Ensure the header is above the table */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    background-color: #00acc1; /* Blue background for the entire table */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    color: #fff; /* Text color inside the table */
+}
+
+th {
+    background-color: #0097a7; /* Slightly darker blue for table headers */
+}
+
+tr:nth-child(even) {
+    background-color: #00838f; /* Alternate row color, slightly darker blue */
+}
+
+tr:hover {
+    background-color: #00796b; /* Highlight color on hover, a different shade of blue */
+}
+
+/* Button styles */
+button {
+    cursor: pointer;
+}
+
+/* Styles for action buttons */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.update-button, .delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.update-button {
+    color: #fff; /* Color for the update button */
+}
+
+.delete-button {
+    display: none; /* Hide the delete button */
+}
+
+/* Form container styles */
+.form-container {
+    display: none; /* Initially hide the form */
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form input, .form-container form select, .form-container form button {
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-container form button {
+    background-color: #00acc1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #00acc1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.table-container .title {
+    font-size: 1.5em; /* Increase the font size */
+    text-align: center; /* Center align the text */
+    color: rgb(15, 193, 238); /* Change the color to blue */
+    margin: 10px 0; /* Add margin for spacing */
+    font-weight: bold;
+}
